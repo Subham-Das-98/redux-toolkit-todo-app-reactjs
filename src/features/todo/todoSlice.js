@@ -14,6 +14,7 @@ const initialState = {
   alertMessages: [],
 };
 
+// helper function to get new alert object
 function createAlertMessage(message) {
   return {
     id: nanoid(),
@@ -64,7 +65,7 @@ export const todoSlice = createSlice({
   },
 });
 
-// for app components
+// individual reducers for app components
 export const {
   addTodo,
   deleteTodo,
@@ -76,7 +77,7 @@ export const {
   deleteAlertMessage
 } = todoSlice.actions;
 
-// for app store
+// bundle reducer for app store
 export default todoSlice.reducer;
 
 // selector function to get a specific todo by id
