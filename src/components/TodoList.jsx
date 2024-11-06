@@ -7,10 +7,12 @@ function TodoList() {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
 
+  // no todo found
   if(!todos?.length) {
     return <div className="mt-14 mb-4 mx-auto w-max text-slate-600">No todo found</div>
   }
 
+  // list todo
   return (
     <>
       <div className="w-full max-w-5xl border mt-14 mb-4 mx-auto px-2 rounded-lg bg-slate-950 border-slate-800 divide-y divide-slate-800">
