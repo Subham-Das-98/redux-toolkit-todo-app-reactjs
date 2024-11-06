@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { deleteAlertMessage } from "../features/todo/todoSlice";
 
 function AlertMessage({ alertMessage, messageId }) {
-  const alertSec = 3; //show alert for how many second
+  const alertSec = 5; //show alert for how many second
   const alertRef = useRef();
   const dispatch = useDispatch();
 
