@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, getTodoById, enableEdit, setCurrentTodo } from "../features/todo/todoSlice";
+import { deleteTodo, getTodoById, enableEdit, setCurrentTodo, completeTodo, inCompleteTodo } from "../features/todo/todoSlice";
 import { addAlertMessage } from "../features/alert/alertSlice"
 import TodoItem from "./TodoItem";
 
@@ -18,10 +18,11 @@ function TodoList() {
     <>
       <div className="w-full max-w-5xl border mt-14 mb-4 mx-auto px-2 rounded-lg bg-slate-950 border-slate-800 divide-y divide-slate-800">
         {todos && todos.map((todo, index) => (
-          <li key={todo.id} id={todo.id} className="list-none">
+          <li key={todo.id} className="list-none">
             <TodoItem
               text={todo.text}
               index={index}
+              completed= {todo.completed}
               editHandler={(e) => {
                 e.preventDefault();
                 dispatch(enableEdit());
@@ -31,6 +32,15 @@ function TodoList() {
                 e.preventDefault();
                 dispatch(deleteTodo(todo.id));
                 dispatch(addAlertMessage("Todo deleted successfully"));
+              }}
+              completionHandler={(check) => {
+                if(check) {
+                  dispatch(completeTodo(todo.id));
+                  dispatch(addAlertMessage("Todo completed"));
+                } else {
+                  dispatch(inCompleteTodo(todo.id));
+                  dispatch(addAlertMessage("Todo in-complete"));
+                }
               }}
             />
           </li>

@@ -1,7 +1,12 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-  alerts: []
+  alerts: [
+    // {
+    //   id: nanoid(),
+    //   message: "alert message"
+    // }
+  ]
 }
 
 export const alertSlice = createSlice({
