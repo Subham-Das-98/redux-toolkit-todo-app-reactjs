@@ -71,7 +71,6 @@ function TodoList() {
               <li key={todo.id} className="list-none">
                 <TodoItem
                   text={todo.text}
-                  id={todo.id}
                   index={index}
                   completed={todo.completed}
                   editHandler={() => {

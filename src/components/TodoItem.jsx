@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 function TodoItem({
   text,
-  id,
   index,
   completed,
   editHandler,
@@ -13,7 +12,7 @@ function TodoItem({
 
   useEffect(() => {
     if (checked) {
-      completionHandler(checked);
+      completionHandler();
     }
   }, [checked]);
 
