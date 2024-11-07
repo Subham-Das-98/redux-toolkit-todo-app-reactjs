@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, getTodoById, enableEdit, setCurrentTodo } from "../features/todo/todoSlice";
+import { addAlertMessage } from "../features/alert/alertSlice"
 import TodoItem from "./TodoItem";
 
 function TodoList() {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todo.todos);
 
   // no todo found
   if(!todos?.length) {
@@ -28,7 +29,8 @@ function TodoList() {
               }}
               deleteHandler={(e) => {
                 e.preventDefault();
-                dispatch(deleteTodo(todo.id))
+                dispatch(deleteTodo(todo.id));
+                dispatch(addAlertMessage("Todo deleted successfully"));
               }}
             />
           </li>

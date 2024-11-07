@@ -11,16 +11,8 @@ const initialState = {
     ],
   isEditable: false,
   currentTodo: {},
-  alerts: [],
 };
 
-// helper function to get new alert object
-function createAlertMessage(message) {
-  return {
-    id: nanoid(),
-    message
-  }
-}
 
 export const todoSlice = createSlice({
   name: "todo",
@@ -32,19 +24,16 @@ export const todoSlice = createSlice({
         text: action.payload,
       };
       state.todos.push(todo);
-      state.alerts.push(createAlertMessage("Todo added successfully"));
       localStorage.setItem("todos", JSON.stringify(state.todos));
     },
     deleteTodo: (state, action) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
-      state.alerts.push(createAlertMessage("Todo deleted successfully"));
       localStorage.setItem("todos", JSON.stringify(state.todos));
     },
     updateTodo: (state, action) => {
       state.todos = state.todos.map((todo) =>
         todo.id === action.payload.id ? action.payload.todo : todo
       );
-      state.alerts.push(createAlertMessage("Todo updated successfully"));
       localStorage.setItem("todos", JSON.stringify(state.todos));
     },
     setCurrentTodo: (state, action) => {
@@ -55,12 +44,6 @@ export const todoSlice = createSlice({
     },
     disableEdit: (state) => {
       state.isEditable = false;
-    },
-    setAlertMessage: (state, action) => {
-      state.alerts.push(createAlertMessage(action.payload));
-    },
-    deleteAlertMessage: (state, action) => {
-      state.alerts = state.alerts.filter(alertMessage => alertMessage.id !== action.payload);
     }
   },
 });
@@ -72,9 +55,7 @@ export const {
   updateTodo,
   setCurrentTodo,
   enableEdit,
-  disableEdit,
-  setAlertMessage,
-  deleteAlertMessage
+  disableEdit
 } = todoSlice.actions;
 
 // bundle reducer for app store

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { deleteAlertMessage } from "../features/todo/todoSlice";
+import { deleteAlertMessage } from "../features/alert/alertSlice";
 
-function AlertMessage({ alertMessage, messageId }) {
+function AlertMessage({ alertMessage, alertId }) {
   const alertSec = 5; //show alert for how many second
   const alertRef = useRef();
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function AlertMessage({ alertMessage, messageId }) {
   function handleCloseBtn() {
     alertRef.current?.classList.remove("block");
     alertRef.current?.classList.add("hidden");
-    dispatch(deleteAlertMessage(messageId)); //reset alert message
+    dispatch(deleteAlertMessage(alertId)); //reset alert message
   }
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function AlertMessage({ alertMessage, messageId }) {
       setTimeout(() => {
         alertRef.current?.classList.remove("block");
         alertRef.current?.classList.add("hidden");
-        dispatch(deleteAlertMessage(messageId)); //reset alert message
+        dispatch(deleteAlertMessage(alertId)); //reset alert message
       }, (alertSec * 1000));
     }
   }, []);

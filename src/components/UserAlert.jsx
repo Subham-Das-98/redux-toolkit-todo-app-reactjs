@@ -3,7 +3,7 @@ import AlertMessage from "./AlertMessage";
 import { useSelector } from "react-redux";
 
 function UserAlert() {
-  const alerts = useSelector((state) => state.alerts);
+  const alerts = useSelector((state) => state.alert.alerts);  //to be changed to alertSlice
 
   return (
     <>
@@ -12,7 +12,7 @@ function UserAlert() {
           <li className="list-none" key={alert.id}>
             <AlertMessage
               alertMessage={alert.message}
-              messageId={alert.id}
+              alertId={alert.id}
             />
           </li>
         ))}

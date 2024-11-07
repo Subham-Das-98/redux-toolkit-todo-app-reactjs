@@ -6,11 +6,12 @@ import {
   disableEdit,
   setCurrentTodo,
 } from "../features/todo/todoSlice";
+import { addAlertMessage } from "../features/alert/alertSlice";
 
 function TodoAdd() {
   const [input, setInput] = useState("");
-  const isEditable = useSelector((state) => state.isEditable);
-  const currentTodo = useSelector((state) => state.currentTodo);
+  const isEditable = useSelector((state) => state.todo.isEditable);
+  const currentTodo = useSelector((state) => state.todo.currentTodo);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,8 +24,10 @@ function TodoAdd() {
     e.preventDefault();
     if (!input || input.length === 0) return;
     dispatch(addTodo(input));
+    dispatch(addAlertMessage("Todo added successfully"));
     setInput("");
   }
+
   function saveChangesHandler(e) {
     e.preventDefault();
     if (!input || input.length === 0 || !currentTodo) return;
@@ -32,6 +35,7 @@ function TodoAdd() {
     dispatch(updateTodo({ id: currentTodo.id, todo: newTodo }));
     dispatch(disableEdit());
     dispatch(setCurrentTodo({}));
+    dispatch(addAlertMessage("Todo updated successfully"));
     setInput("");
   }
 
