@@ -40,9 +40,11 @@ export const todoSlice = createSlice({
     },
     completeTodo: (state, action) => {
       state.todos = state.todos.map(todo => todo.id === action.payload ? {...todo, completed: true} : todo);
+      localStorage.setItem("todos", JSON.stringify(state.todos));
     },
     inCompleteTodo: (state, action) => {
       state.todos = state.todos.map(todo => todo.id === action.payload ? {...todo, completed: false} : todo);
+      localStorage.setItem("todos", JSON.stringify(state.todos));
     },
     setCurrentTodo: (state, action) => {
       state.currentTodo = action.payload;
