@@ -66,7 +66,11 @@ function TodoItem({
           <div>
             <input
               type="button"
-              className={`px-4 py-1.5 ${!completed ? " bg-blue-600 hover:bg-blue-700 cursor-pointer": "bg-gray-700 cursor-not-allowed"} rounded-md transition`}
+              className={`px-4 py-1.5 ${
+                !completed
+                  ? " bg-blue-600 hover:bg-blue-700 cursor-pointer"
+                  : "bg-gray-700 cursor-not-allowed"
+              } rounded-md transition`}
               value="Edit"
               onClick={editHandler}
               name="edit-btn"
