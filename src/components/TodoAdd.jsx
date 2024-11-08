@@ -41,7 +41,7 @@ function TodoAdd() {
 
   return (
     <>
-      <div className="w-full max-w-2xl mx-auto mt-24">
+      <div className="w-full max-w-2xl mx-auto mt-24 p-2">
         <form action="">
           <div>
             <input

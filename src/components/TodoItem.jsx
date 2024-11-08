@@ -6,14 +6,12 @@ function TodoItem({
   completed,
   editHandler,
   deleteHandler,
-  completionHandler,
+  completeIncompleteHandler,
 }) {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    if (checked) {
-      completionHandler();
-    }
+    if (checked) completeIncompleteHandler();
   }, [checked]);
 
   return (

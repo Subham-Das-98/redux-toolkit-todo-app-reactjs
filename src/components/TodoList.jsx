@@ -28,7 +28,7 @@ function TodoList() {
     dispatch(addAlertMessage("Todo deleted successfully"));
   };
 
-  const completionHandler = (id, check = false) => {
+  const toggleTodo = (id, check = false) => {
     if (check) {
       dispatch(completeTodo(id));
       dispatch(addAlertMessage("Todo completed"));
@@ -49,7 +49,7 @@ function TodoList() {
   // list todo
   return (
     <>
-      <div className="divide-y divide-slate-800 mt-14 mb-4">
+      <div className="divide-y divide-slate-800 mt-14 mb-4 p-2">
         {/* incomplete todos */}
         <div className="mb-8">
           <div className="w-full max-w-5xl mx-auto">
@@ -79,8 +79,8 @@ function TodoList() {
                   deleteHandler={() => {
                     deleteHandler(todo.id);
                   }}
-                  completionHandler={() => {
-                    completionHandler(todo.id, true);
+                  completeIncompleteHandler={() => {
+                    toggleTodo(todo.id, true);
                   }}
                 />
               </li>
@@ -117,8 +117,8 @@ function TodoList() {
                   deleteHandler={() => {
                     deleteHandler(todo.id);
                   }}
-                  completionHandler={() => {
-                    completionHandler(todo.id, false);
+                  completeIncompleteHandler={() => {
+                    toggleTodo(todo.id, false);
                   }}
                 />
               </li>
