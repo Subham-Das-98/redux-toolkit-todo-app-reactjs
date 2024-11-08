@@ -27,7 +27,7 @@ function AlertMessage({ alertMessage, alertId }) {
     <>
       <div
         ref={alertRef}
-        className={`bg-slate-950 w-max py-2 pl-6 pr-4 mt-2 rounded-md transition-all`}
+        className={`bg-slate-950 w-max py-2 pl-6 pr-4 mt-2 rounded-md transition-all border border-emerald-900`}
       >
         <span className="text-emerald-600 mr-6">{alertMessage}</span>
         <span className="hover:bg-slate-900 px-1.5 rounded-sm transition">
