@@ -79,8 +79,8 @@ function TodoList() {
                   deleteHandler={() => {
                     deleteHandler(todo.id);
                   }}
-                  completeIncompleteHandler={() => {
-                    toggleTodo(todo.id, true);
+                  completeIncompleteHandler={(check) => {
+                    toggleTodo(todo.id, check);
                   }}
                 />
               </li>
@@ -92,9 +92,9 @@ function TodoList() {
         <div>
           <div className="w-full max-w-5xl  mt-8 mb-4 mx-auto">
             <span className="text-slate-600 text-center w-full block">
-              {(completeTodos.length === 0) && ("No completed todo found")}
-              {(completeTodos.length === 1) && ("Completed todo")}
-              {(completeTodos.length > 1) && ("Completed todos")}
+              {completeTodos.length === 0 && "No completed todo found"}
+              {completeTodos.length === 1 && "Completed todo"}
+              {completeTodos.length > 1 && "Completed todos"}
             </span>
           </div>
 
@@ -117,8 +117,8 @@ function TodoList() {
                   deleteHandler={() => {
                     deleteHandler(todo.id);
                   }}
-                  completeIncompleteHandler={() => {
-                    toggleTodo(todo.id, false);
+                  completeIncompleteHandler={(check) => {
+                    toggleTodo(todo.id, check);
                   }}
                 />
               </li>

@@ -14,12 +14,17 @@ function AlertMessage({ alertMessage, alertId }) {
   }
 
   useEffect(() => {
+    let tid;
     if (alertMessage) {
-      setTimeout(() => {
+      tid = setTimeout(() => {
         alertRef.current?.classList.remove("block");
         alertRef.current?.classList.add("hidden");
         dispatch(deleteAlertMessage(alertId)); //reset alert message
       }, (alertSec * 1000));
+    }
+
+    return () => {
+      clearTimeout(tid);
     }
   }, []);
 

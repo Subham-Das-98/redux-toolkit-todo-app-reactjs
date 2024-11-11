@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function TodoItem({
   text,
@@ -8,11 +8,7 @@ function TodoItem({
   deleteHandler,
   completeIncompleteHandler,
 }) {
-  const [checked, setChecked] = useState(false);
-
-  useEffect(() => {
-    if (checked) completeIncompleteHandler();
-  }, [checked]);
+  const [checked, setChecked] = useState(completed);
 
   return (
     <>
@@ -39,9 +35,12 @@ function TodoItem({
                 className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-pink-600 checked:border-pink-600"
                 name="todo-check"
                 onChange={(e) => {
-                  setChecked((prev) => !prev);
+                  e.preventDefault();
+                  let currentCheck = !checked;
+                  setChecked(currentCheck);
+                  completeIncompleteHandler(currentCheck);
                 }}
-                checked={completed}
+                checked={checked}
               />
               <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <svg
